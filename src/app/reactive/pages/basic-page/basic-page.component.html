@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off" [formGroup]="myForm">
+        <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
 
             <!-- Campo de producto -->
             <div class="mb-3 row">
@@ -16,10 +16,9 @@
                            placeholder="Nombre del producto"
                            formControlName="name">
 
-
-                    @if ( !isValidField('name') ) {
+                    @if ( isValidField("name") ) {
                       <span class="form-text text-danger">
-                        {{ getFieldError('name') }}
+                        {{ getFieldError("name") }}
                       </span>
                     }
 
@@ -34,9 +33,12 @@
                            class="form-control"
                            placeholder="Precio del producto"
                            formControlName="price">
-                    <span class="form-text text-danger">
-                        El precio debe de ser 0 o mayor
-                    </span>
+
+                    @if ( isValidField('price') ) {
+                      <span class="form-text text-danger">
+                        {{ getFieldError('price') }}
+                      </span>
+                    }
                 </div>
             </div>
 
@@ -49,9 +51,11 @@
                            placeholder="Existencias del producto"
                            formControlName="inStorage">
 
-                    <span class="form-text text-danger">
-                         Las existencias deben de ser 0 o mayor
-                    </span>
+                    @if ( isValidField('inStorage') ) {
+                      <span class="form-text text-danger">
+                        {{ getFieldError('inStorage') }}
+                      </span>
+                    }
                 </div>
             </div>
 
@@ -85,9 +89,9 @@
         <pre>{{ myForm.value | json }}</pre>
 
         <span>Precio</span>
-        <pre>{{ myForm.controls['price'] | json }}</pre>
+        <pre>{{ myForm.controls['price'].errors | json }}</pre>
 
         <span>Producto</span>
-        <pre>{{ myForm.controls['name'] | json }}</pre>
+        <pre>{{ myForm.controls['name'].errors  | json }}</pre>
     </div>
 </div>

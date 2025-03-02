@@ -29,7 +29,10 @@ export class BasicPageComponent {
   */
 
   isValidField(fieldName: string): boolean | null {
-    return !this.myForm.controls[fieldName].errors;
+    return (
+      this.myForm.controls[fieldName].errors &&
+      this.myForm.controls[fieldName].touched
+    );
   }
 
   getFieldError( fieldName:string): string | null {
@@ -44,12 +47,20 @@ export class BasicPageComponent {
         case 'minlength':
           return `Minimo de ${ errors['minlength'].riqueredLength} caracteres`;
         case 'min':
-          return `Valor minimo de ${ errors['minlength'].min}`;
+          return `Valor minimo de ${ errors['min'].min}`;
       }
     }
     console.log('nulo?');
 
     return null;
+  }
+
+  onSave() {
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+    }
+    console.log("Tudo valido");
+    this.myForm.reset();
   }
 
 }
