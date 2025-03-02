@@ -6,7 +6,6 @@
 
         <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
 
-            <!-- Campo de producto -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
@@ -16,16 +15,15 @@
                            placeholder="Nombre del producto"
                            formControlName="name">
 
-                    @if ( isValidField("name") ) {
+                    @if ( formUtils.isValidField(myForm, "name") ) {
                       <span class="form-text text-danger">
-                        {{ getFieldError("name") }}
+                        {{ formUtils.getFieldError(myForm, "name") }}
                       </span>
                     }
 
                 </div>
             </div>
 
-            <!-- Campo de producto -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
@@ -34,15 +32,14 @@
                            placeholder="Precio del producto"
                            formControlName="price">
 
-                    @if ( isValidField('price') ) {
+                    @if ( formUtils.isValidField(myForm, 'price') ) {
                       <span class="form-text text-danger">
-                        {{ getFieldError('price') }}
+                        {{ formUtils.getFieldError(myForm, 'price') }}
                       </span>
                     }
                 </div>
             </div>
 
-            <!-- Campo de existencias -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Existencias</label>
                 <div class="col-sm-9">
@@ -51,9 +48,9 @@
                            placeholder="Existencias del producto"
                            formControlName="inStorage">
 
-                    @if ( isValidField('inStorage') ) {
+                    @if ( formUtils.isValidField(myForm, 'inStorage') ) {
                       <span class="form-text text-danger">
-                        {{ getFieldError('inStorage') }}
+                        {{ formUtils.getFieldError(myForm, 'inStorage') }}
                       </span>
                     }
                 </div>
