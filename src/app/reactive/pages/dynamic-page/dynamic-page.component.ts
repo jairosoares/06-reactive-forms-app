@@ -51,7 +51,6 @@ export class DynamicPageComponent {
       this.myForm.markAllAsTouched();
     }
     console.log("Tudo valido");
-    //this.myForm.reset();
   }
 
 
